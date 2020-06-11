@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { TopBannerComponent } from './top-banner/top-banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TopBannerComponent
   ],
   imports: [
     BrowserModule,
