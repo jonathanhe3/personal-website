@@ -5,7 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class UtilityService {
 
-  NUMBER_OF_SCROLL_STEPS: number = 30;
+  NUMBER_OF_SCROLL_STEPS: number = 10;
+  IMAGE_HEIGHT: number = 175;
+  IMAGE_PADDING: number = 30;
+  DOWN_SCROLL_AMOUNT: number = this.IMAGE_HEIGHT + 2*this.IMAGE_PADDING;
+  SCROLL_STOP: number = 100;
 
   scrollId: number;
   stepSize: number = 0;
@@ -13,22 +17,20 @@ export class UtilityService {
 
   constructor() { }
 
-  scrollToTop() {
+  scrollUpToPosition(position) {
     let currentPosition = document.documentElement.scrollTop;
-    if (this.stepSize == 0) {
-      this.scrollStart = currentPosition;
-      this.stepSize = Math.ceil(currentPosition / this.NUMBER_OF_SCROLL_STEPS);
-    }
-    if (currentPosition == 0) {
-      window.cancelAnimationFrame(this.scrollId);
+    if (currentPosition > position) {
+      this.stepSize = Math.ceil((currentPosition - position) / this.NUMBER_OF_SCROLL_STEPS);
+      if (currentPosition == position) {
+        window.cancelAnimationFrame(this.scrollId);
+      } else if (currentPosition - this.stepSize > position) {
+        window.scrollTo(0, currentPosition - this.stepSize);
+        this.scrollId = window.requestAnimationFrame(this.scrollUpToPosition.bind(this, position));
+      } else {
+        window.scrollTo(0, position);
+        this.scrollId = window.requestAnimationFrame(this.scrollUpToPosition.bind(this, position));
+      } 
       this.stepSize = 0;
-    } else if (currentPosition - this.stepSize > 0) {
-      window.scrollTo(0, currentPosition - this.stepSize);
-      this.scrollId = window.requestAnimationFrame(this.scrollToTop.bind(this));
-    } else {
-      window.scrollTo(0, 0);
-      this.scrollId = window.requestAnimationFrame(this.scrollToTop.bind(this));
-    } 
-    // window.scrollTo({top: 0, left:0, behavior: 'smooth'});
+    }
   }
 }

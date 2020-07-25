@@ -1,31 +1,51 @@
-.wrapper {
+div {
+  &.large-wrapper {
   text-align: center;
   position: fixed;
   top: 0px;
   left: 0px;
   right: 0px;
   background: lightblue;
+  // @media (max-width: 415px) {
+  //   height: 40px;
+  // }
+  }
+  &.large-filler {
+    height: 255px;
+  }
 }
 
-.filler {
-  height: 267px;
+#menu-icon {
+  top: 8px;
+  right: 8px;
+  position: absolute;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 img {
+  &.large-image {
   padding: 30px 0px 30px 0px;
+  height: 175px;
+  display: block;
+  margin: auto;
+  }
 }
 
 nav {
-  padding: 0px;
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  padding: 5px 20px 5px 20px;
-  text-decoration: none;
-  color: black;
-  &.active {
-    background-color: #e6d8d8;
+  &.large-nav {
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    a {
+      padding: 5px 20px 5px 20px;
+      text-decoration: none;
+      color: black;
+      &.active {
+        background-color: white;
+        border-radius: 10px 10px 0px 0px;
+      }
+    }
   }
 }

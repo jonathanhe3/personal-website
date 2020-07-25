@@ -9,9 +9,16 @@ import { UtilityService } from './utility.service';
 export class AppComponent {
   title = 'personal-website';
 
+  firstTimeLoad = true;
+
   constructor(private utilityService: UtilityService) {}
 
-  callScrollToTop() {
-    this.utilityService.scrollToTop();
+  callScrollUpToPosition() {
+    if (this.firstTimeLoad) {
+      this.utilityService.scrollUpToPosition(0);
+      this.firstTimeLoad = false;
+    } else {
+      this.utilityService.scrollUpToPosition(100);
+    }
   }
 }
