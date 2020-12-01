@@ -1,39 +1,51 @@
 div {
+  // large view
   &.large-wrapper {
-  text-align: center;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  background: lightblue;
-  // @media (max-width: 415px) {
-  //   height: 40px;
-  // }
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background: lightblue;
   }
   &.large-filler {
-    height: 255px;
+    height: 263px;
   }
-}
 
-#menu-icon {
-  top: 8px;
-  right: 8px;
-  position: absolute;
-  &:hover {
-    cursor: pointer;
+  // small view
+  &.small-wrapper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background: lightblue;
+  }
+  &.small-filler {
+    height: 44px;
   }
 }
 
 img {
+  // large view
   &.large-image {
-  padding: 30px 0px 30px 0px;
-  height: 175px;
-  display: block;
-  margin: auto;
+    padding: 30px 0px 30px 0px;
+    height: 175px;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+  }
+
+  // small view
+  &.small-image {
+    margin: 8px;
+    height: 24px;
+    display: block;
+    border-radius: 50%;
   }
 }
 
 nav {
+  // large view
   &.large-nav {
     padding: 0px;
     display: flex;
@@ -48,4 +60,78 @@ nav {
       }
     }
   }
+
+  // small view
+  &.small-nav {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    background: cyan;
+    height: 100%;
+
+    &[open='false'] {
+      animation-name: close-menu;
+      animation-duration: 0.5s;
+      width: 0%;
+      a {
+        display: none;
+      }
+    }
+    &[open='true'] {
+      animation-name: open-menu;
+      animation-duration: 0.5s;
+      width: 70%;
+      a {
+        display: flex;
+      }
+    }
+
+    a {
+      justify-content: center;
+      text-decoration: none;
+      height: 30px;
+      align-items: center;
+      border-bottom: solid gray 1px;
+      &.active {
+        background-color: lightcyan;
+      }
+      &:hover {
+        background-color: white;
+      }
+    }
+    a:first-of-type {
+      border-top: solid gray 1px;
+    }
+  }
+  
+}
+
+// open and close menu animations on small view
+@keyframes close-menu {
+  from { width: 70%; }
+  to { width: 0%; }
+}
+@keyframes open-menu {
+  from { width: 0%; }
+  to { width: 70%; }
+}
+
+// only appears on small view when menu is closed
+#menu-icon {
+  top: 8px;
+  right: 8px;
+  position: absolute;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// only appears on small view when menu is open
+#close-menu-icon {
+  &:hover {
+    cursor: pointer;
+  }
+  padding-bottom: 6px;
 }

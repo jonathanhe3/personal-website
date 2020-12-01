@@ -3,7 +3,7 @@
   <!-- large/medium view -->
   <div *ngIf='windowWidth > 415'>
     <div class='large-wrapper'>
-      <img id='image' class='large-image' src='assets/img/tree.jpeg'>
+      <img id='image' class='large-image' src='assets/img/headshot.JPG'>
       <nav class='large-nav'>
         <a routerLink='/about-me' routerLinkActive='active'>About Me</a>
         <a routerLink='/experience' routerLinkActive='active'>Experience</a>
@@ -17,9 +17,19 @@
 
   <!-- small view -->
   <div *ngIf='windowWidth <= 415'>
-    
-    <mat-icon id="menu-icon" (click)="toggleMenu()">menu</mat-icon>
+    <div class='small-wrapper'>
+      <img id='image' class='small-image' src='assets/img/headshot.JPG'>
+      <mat-icon id="menu-icon" (click)="toggleMenu()">menu</mat-icon>
+    </div>
+    <div class='small-filler'></div>
   </div>
-  
+  <nav class='small-nav' [attr.open]='displayMenu'>
+    <mat-icon id="close-menu-icon" (click)="toggleMenu()">close</mat-icon>
+    <a routerLink='/about-me' routerLinkActive='active' (click)='toggleMenu()'>About Me</a>
+    <a routerLink='/experience' routerLinkActive='active' (click)='toggleMenu()'>Experience</a>
+    <a routerLink='/hobbies' routerLinkActive='active' (click)='toggleMenu()'>Hobbies</a>
+    <a routerLink='/contact' routerLinkActive='active' (click)='toggleMenu()'>Contact</a>
+  </nav>
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </header>

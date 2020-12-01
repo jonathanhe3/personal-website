@@ -8,13 +8,17 @@ import { UtilityService } from '../utility.service';
 })
 export class TopBannerComponent implements OnInit {
 
+  // image resizing in large view
   imageRef: any;
-
   lastScrollPosition: any;
   imageHeightFactor: any;
   imagePaddingFactor: any;
 
+  // large view vs small view
   windowWidth: any;
+
+  // display menu
+  displayMenu: boolean = false;
 
   constructor(private utilityService: UtilityService) { }
 
@@ -29,7 +33,7 @@ export class TopBannerComponent implements OnInit {
   }
 
   toggleMenu() {
-    console.log("toggle menu");
+    this.displayMenu = !this.displayMenu;
   }
 
   @HostListener('window:scroll')
@@ -52,6 +56,7 @@ export class TopBannerComponent implements OnInit {
     this.windowWidth = event.target.innerWidth;
     if (this.windowWidth > 415) {
       this.imageRef = document.getElementById('image');
+      this.displayMenu = false;
     }
   }
 }
